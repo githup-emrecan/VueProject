@@ -3,7 +3,7 @@
         <nav>
             <div class="menu-item"><a href="">ANASAYFA</a></div>
             <div class="menu-item"><a href="">HAKKIMIZDA</a></div>
-            <drop title="SHOP" :items="services" />
+            <drop title="SHOP" :items="shop" />
             <div class="menu-item"><a href="">MENÜ</a></div>
             <div class="menu-item"><a href="">FRANCHISE</a></div>
             <div class="menu-item"><a href="">HERYERDEYİZ</a></div>
@@ -22,7 +22,7 @@ export default {
     },
     data(){
         return {
-          services:[
+          shop:[
               {
                   title:'Kahve Grubu',
                   link:'#'
