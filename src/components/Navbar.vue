@@ -24,7 +24,7 @@ export default {
         return {
           services:[
               {
-                  title:'Kahve Grubu',
+                  title:'Kahve Grupları',
                   link:'#'
               },
                {
