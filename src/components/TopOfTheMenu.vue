@@ -30,7 +30,7 @@
                 </nav>
             </section> 
             <section>
-                <img src="../assets/user.png" alt="">
+              <router-link to="/login" tag="a">  <img src="../assets/user.png" alt=""></router-link>
            </section>
            <section>
                <img src="../assets/ecommerce.png" alt="">
@@ -39,9 +39,7 @@
     </header>
 </template>
 
-<script>
 
-</script>
 
 <style scoped>
 
