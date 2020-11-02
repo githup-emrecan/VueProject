@@ -1,7 +1,7 @@
 <template>
     <header>
         <nav>
-            <div class="menu-item"><a href="">ANASAYFA</a></div>
+            <div class="menu-item"><router-link to="/" tag="a">ANASAYFA</router-link></div>
             <div class="menu-item"><a href="">HAKKIMIZDA</a></div>
             <drop title="SHOP" :items="shop" />
             <div class="menu-item"><a href="">MENÜ</a></div>
