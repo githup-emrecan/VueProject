@@ -1,16 +1,14 @@
 <template>
-<div class="login"> <p>burası login</p></div>
+   <section>
+       <login-page></login-page>
+   </section>
 </template>
-
 <script>
+import LoginPage from '../components/loginPage.vue'
 export default {
-    name:'login'
+    components:{
+        LoginPage
+    }
+    
 }
 </script>
-<style scoped>
-.home{
-    float: left;
-    margin-top: 100px;
-    font-size: 15px;
-}
-</style>

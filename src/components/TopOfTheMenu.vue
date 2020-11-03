@@ -26,24 +26,20 @@
                             <li ><a href=""><img src="../assets/tr.png" alt=""></a></li>
                              <li><a href=""><img src="../assets/en.png" alt="" ></a></li>
                         </ul></li>
-                    </ul>
+                    </ul> 
                 </nav>
             </section> 
             <section>
-              <router-link to="/login" tag="a">  <img src="../assets/user.png" alt=""></router-link>
+              <router-link to="/login" tag="a">  <img src="../assets/user.png" alt="" class="over"></router-link>
            </section>
            <section>
-               <img src="../assets/ecommerce.png" alt="">
+               <img src="../assets/ecommerce.png" alt="" class="over">
           </section>       
        </div>
     </header>
 </template>
 
-
-
 <style scoped>
-
-
 header{
     width: 100%;
     height: 87px;
@@ -104,6 +100,9 @@ section{
     margin-top: 20px;
     float: left;
     margin-left: 10px;
+}
+.over:hover{
+    opacity: 0.8;
 }
 nav ul{
     list-style: none;
