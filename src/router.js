@@ -5,6 +5,7 @@ import login from '../src/views/Login'
 import adres from '../src/views/Adress'
 import shower from '../src/views/Shower'
 import account from '../src/views/Infoaccount'
+import product from '../src/views/Product'
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +40,13 @@ export default new Router({
     path: '/account',
     name: 'account',
     component:account
+  
+   }
+   ,
+   {
+    path: '/product',
+    name: 'product',
+    component:product
   
    }
   ]
