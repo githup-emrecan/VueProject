@@ -9,11 +9,11 @@
 <script>
 import TopOfTheMenu from './components/TopOfTheMenu.vue'
 import Navbar from './components/Navbar'
-export default{
-  components:{
-    'top-menu':TopOfTheMenu,
-    'bottom-menu':Navbar,
-    
+export default {
+  components: {
+    'top-menu': TopOfTheMenu,
+    'bottom-menu': Navbar
+
   }
 }
 

@@ -16,13 +16,13 @@
 
 <script>
 export default {
-    name:'dropdown',
-    props: ['title','items'],
-    data(){
-        return{
-            isOpen:false
-        }
+  name: 'dropdown',
+  props: ['title', 'items'],
+  data () {
+    return {
+      isOpen: false
     }
+  }
 }
 </script>
 
@@ -57,7 +57,6 @@ nav .menu-item .sub-menu a {
 }
 nav .menu-item .sub-menu a:hover {
  color: #fff;
-
 
 }
 

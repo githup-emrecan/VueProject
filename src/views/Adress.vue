@@ -6,9 +6,9 @@
 <script>
 import AdresandPrice from '../components/AdresandPrice'
 export default {
-    components:{
-       'viewadres':AdresandPrice
-    }
-    
+  components: {
+    'viewadres': AdresandPrice
+  }
+
 }
 </script>

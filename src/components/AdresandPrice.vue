@@ -1,5 +1,5 @@
 <template>
-    <div class="AdresandPrice"> 
+    <div class="AdresandPrice">
          <div class="container">
     <h2>{{title}}</h2>
     <p>{{text}}</p>
@@ -37,44 +37,43 @@
         </table>
         <div class="using"> <input type="checkbox" id="checkbox" v-model="checked">
         <label for="checkbox">fatura adresim olarak kullan</label></div>
-     
+
          </div>
     </div>
 </template>
 
 <script>
 export default {
-  name:'AdresandPrice',
-  data()
-  {
-    return{
-      title:'Adres & Ödeme',
-      text:'Teslimat Bilgeri',
-       name:'Ad',
-       surname:'Soyad',
-       tc:'TC kimlik No',
-       email:'E-mail',
-       tel:'Telefon',
-       adres:'Adres',
-       pkod:'Posta kodu',
-       citys:[
-           {ctname:'',value:'il0'},
-           {ctname:'İlAdı1',value:'il1'},
-           {ctname:'İlAdı2',value:'il2'},
-           {ctname:'İlAdı3',value:'il3'},
-           {ctname:'İlAdı4',value:'il4'},
-           {ctname:'İlAdı5',value:'il5'},
-           {ctname:'İlAdı6',value:'il6'},
-       ],
-       towns:[
-           {tname:'',value:'ilce0'},
-           {tname:'İlçeAdı1',value:'ilce1'},
-           {tname:'İlçeAdı2',value:'ilce2'},
-           {tname:'İlçeAdı3',value:'ilce3'},
-           {tname:'İlçeAdı4',value:'ilce4'},
-           {tname:'İlçeAdı5',value:'ilce5'},
-           {tname:'İlçeAdı6',value:'ilce6'},
-       ],
+  name: 'AdresandPrice',
+  data () {
+    return {
+      title: 'Adres & Ödeme',
+      text: 'Teslimat Bilgeri',
+      name: 'Ad',
+      surname: 'Soyad',
+      tc: 'TC kimlik No',
+      email: 'E-mail',
+      tel: 'Telefon',
+      adres: 'Adres',
+      pkod: 'Posta kodu',
+      citys: [
+        { ctname: '', value: 'il0' },
+        { ctname: 'İlAdı1', value: 'il1' },
+        { ctname: 'İlAdı2', value: 'il2' },
+        { ctname: 'İlAdı3', value: 'il3' },
+        { ctname: 'İlAdı4', value: 'il4' },
+        { ctname: 'İlAdı5', value: 'il5' },
+        { ctname: 'İlAdı6', value: 'il6' }
+      ],
+      towns: [
+        { tname: '', value: 'ilce0' },
+        { tname: 'İlçeAdı1', value: 'ilce1' },
+        { tname: 'İlçeAdı2', value: 'ilce2' },
+        { tname: 'İlçeAdı3', value: 'ilce3' },
+        { tname: 'İlçeAdı4', value: 'ilce4' },
+        { tname: 'İlçeAdı5', value: 'ilce5' },
+        { tname: 'İlçeAdı6', value: 'ilce6' }
+      ]
     }
   }
 }
@@ -88,13 +87,13 @@ export default {
     float: left;
     margin-top: 20px;
     margin-left: 7%;
-    font-size: 10px; 
+    font-size: 10px;
     margin-bottom: 50px;
 }
 .container{
   margin-left: 5%;
   width: auto;
- 
+
 }
 h2{
   color: #7b232e;
