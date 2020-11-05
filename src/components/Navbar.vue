@@ -16,42 +16,42 @@
 <script>
 import Dropdown from './Dropdown.vue'
 export default {
-    name:'navbar',
-    components:{
-      'drop': Dropdown
-    },
-    data(){
-        return {
-          shop:[
-              {
-                  title:'Kahve Grubu',
-                  link:'#'
-              },
-               {
-                  title:'Aksesuar',
-                  link:'#'
-              },
-              {
-                  title:'Hediye Kutuları',
-                  link:'#'
-              }
-          ],
-           global:[
-              {
-                  title:'Azerbeycan',
-                  link:'#'
-              },
-               {
-                  title:'Mısır',
-                  link:'#'
-              },
-              {
-                  title:'Kıbrıs',
-                  link:'#'
-              }
-          ]
+  name: 'navbar',
+  components: {
+    'drop': Dropdown
+  },
+  data () {
+    return {
+      shop: [
+        {
+          title: 'Kahve Grubu',
+          link: '#'
+        },
+        {
+          title: 'Aksesuar',
+          link: '#'
+        },
+        {
+          title: 'Hediye Kutuları',
+          link: '#'
         }
+      ],
+      global: [
+        {
+          title: 'Azerbeycan',
+          link: '#'
+        },
+        {
+          title: 'Mısır',
+          link: '#'
+        },
+        {
+          title: 'Kıbrıs',
+          link: '#'
+        }
+      ]
     }
+  }
 }
 </script>
 <style>
@@ -61,7 +61,7 @@ header{
     background:#7b232e;
     top:0;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    
+
 }
 nav{
     display: flex;

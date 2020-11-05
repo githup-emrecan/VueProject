@@ -1,5 +1,5 @@
 <template>
-<div class="loginPage"> 
+<div class="loginPage">
   <pre><span>Anasayfa  /  </span>{{title}}</pre>
   <div class="container">
     <h2>{{Bigtitle}}</h2>
@@ -24,15 +24,14 @@
 
 <script>
 export default {
-  name:'loginPage',
-  data()
-  {
-    return{
-      title:'Giriş',
-      Bigtitle:'Üye Girişi',
-      text:'Eğer sitemize daha önceden kayıt olmuşsanız e-mail ve şifreniz ile sisteme giriş yapabilirsiniz.',
-      email:'E-mail',
-      password:'Şifre',
+  name: 'loginPage',
+  data () {
+    return {
+      title: 'Giriş',
+      Bigtitle: 'Üye Girişi',
+      text: 'Eğer sitemize daha önceden kayıt olmuşsanız e-mail ve şifreniz ile sisteme giriş yapabilirsiniz.',
+      email: 'E-mail',
+      password: 'Şifre'
     }
   }
 }
@@ -46,13 +45,13 @@ export default {
     margin-top: 20px;
     margin-left: 7%;
     font-size: 13px;
-    
+
 }
 pre{
   color:black;
   font-size: 15px;
 }
-span{ 
+span{
   opacity: 0.5;
   font-size: 13px;
 }

@@ -6,9 +6,9 @@
 <script>
 import LoginPage from '../components/loginPage.vue'
 export default {
-    components:{
-        LoginPage
-    }
-    
+  components: {
+    LoginPage
+  }
+
 }
 </script>

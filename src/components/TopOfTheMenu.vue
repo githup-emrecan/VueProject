@@ -26,15 +26,15 @@
                             <li ><a href=""><img src="../assets/tr.png" alt=""></a></li>
                              <li><a href=""><img src="../assets/en.png" alt="" ></a></li>
                         </ul></li>
-                    </ul> 
+                    </ul>
                 </nav>
-            </section> 
+            </section>
             <section>
               <router-link to="/login" tag="a">  <img src="../assets/user.png" alt="" class="over"></router-link>
            </section>
            <section>
                <img src="../assets/ecommerce.png" alt="" class="over">
-          </section>       
+          </section>
        </div>
     </header>
 </template>
@@ -44,12 +44,12 @@ header{
     width: 100%;
     height: 87px;
     background-color:#fff;
-    margin-top: 0; 
+    margin-top: 0;
 }
 .container{
     width:25%;
     height: 100%;
-    float: left;    
+    float: left;
 }
 #search-box{
     position: relative;
@@ -108,7 +108,7 @@ nav ul{
     list-style: none;
     margin: 0;
   padding: 0;
- 
+
 }
 nav li{
     position:relative;
@@ -135,7 +135,7 @@ nav ul li a{
   text-align: center;
 }
 nav ul li ul li a{
- 
+
   padding-top: 2px;
   font-size: .8em;
 }
