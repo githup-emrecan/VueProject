@@ -3,12 +3,12 @@
         <section><h4>POPÜLER ÜRÜNLER</h4></section>
         <div class="productcontainer">
             <div class="product" v-for="product in products" :key="product.ProductID">
-              <a href=""> 
+                <router-link :to="{name:'productdetails' ,params:{id:product.ProductID}}" tag="a"> 
                 <div class="image">
                     <img :src="product.Prtdimage" :alt="product.ProductName">
                      <h4>{{product.ProductName}}</h4>
                 </div>
-               </a>
+                </router-link>
                 <p>KDV Dahil</p>
                 <h3>{{product.kdvPrice}}</h3>
             </div>
@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import products from '../data/product.json'
+import Store from '../data/product.js'
 export default {
     name:'producPopuler',
     data(){
         return{
-           products
+             products: Store.Products
         }
     }
     
