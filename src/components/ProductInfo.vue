@@ -1,6 +1,18 @@
 <template>
 <section id="productt">
-<div class="imgcontainer"><img :src="productt.Prtdimage" alt=""></div>
+<div class="imgcontainer" v-show="productt.isSlide === 0"><img :src="productt.images[imgCount]" alt=""> </div>
+<div class="imgslide" v-show="productt.isSlide === 1">
+    <div class="bigimage" > 
+        <a @click="prev" class="left"></a>
+        <img :src="productt.images[Math.abs(imgCount) % productt.images.length]" alt="" class="bigcenter">
+         <a @click="next" class="right"></a>
+        </div>
+    <div class="littleimage"> 
+        <a @click="next"><img :src="productt.images[1]" alt=""></a>
+         <a @click="prev"><img :src="productt.images[0]" alt=""></a>
+         
+  </div>
+</div>
 <div class="Propcontainer">
      <h1>{{productt.ProductName}}</h1>
       <h3>Coffeemania</h3>
@@ -11,7 +23,7 @@
     </div>
 <section class="btn"> 
 <div class="adet">
-    <input type="number" name="quantity" id="quantityvalue" value="1">Adet</div>
+    <input type="number" name="quantity" id="quantityvalue" value="1" min="1">Adet</div>
    <div class="btn"> <button class="add">SEPETE EKLE</button></div>
 </section>
 <div class="social">
@@ -29,7 +41,8 @@ import Store from '../data/product.js'
 export default {
     data(){
         return{
-            prdtID:this.$route.params.id
+            prdtID:this.$route.params.id,
+            imgCount:0
         }
     },
     computed:{
@@ -39,7 +52,16 @@ export default {
             )
         }
         
-    }
+    },
+     methods: {
+        next: function() {
+            this.imgCount += 1
+        },
+        prev: function() {
+            this.imgCount -= 1
+        }
+}
+
 }
 </script>
 
@@ -57,9 +79,49 @@ export default {
     margin-top: 1em;
     float: left;
 }
+.imgslide{
+    width: 26%;
+    margin-left: 6%;
+    margin-top: 1em;
+    float: left;
+}
+.bigcenter{
+margin-left: 1em;
+}
+
+.bigimage .left {
+     z-index: 100;
+    position: absolute;
+    float: left;
+    width: 20px;
+    height: 500px;
+    background:url(../assets/leftSlide.png) left no-repeat ;
+}
+
+.bigimage .right {
+     z-index: 100;
+    position: absolute;
+    float: right;
+    width: 23px;
+    height: 500px;
+  background:url(../assets/rightSlide.png) left no-repeat ;
+}
+.imgslide img{
+    width: 90%;
+    height: 80%;
+}
+
 .imgcontainer img{
     width: 95%;
     height: 90%;
+}
+.littleimage{
+    margin-top: 3em;
+    width: 85%;
+}
+.littleimage img{
+    width: 30%;
+    float:right;
 }
 .Propcontainer{
     width: 28%;
@@ -80,7 +142,7 @@ export default {
 .Addtocart{
     float: left;
     margin-top: 2em;
-    width: 26%;
+    width: 27%;
     margin-left: 1%;
 }
 .price{
@@ -103,6 +165,7 @@ color: #444;
 font-weight: 700;
 }
  .adet{
+     margin-left: 7px;
     width: 87px;
     background: #efede4;
     border-radius: 5px;
