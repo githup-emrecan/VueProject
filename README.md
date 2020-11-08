@@ -9,6 +9,9 @@ Bu ödevde Vue.js ile proje geliştirmeyi öğreniyoruz ve [Coffemania.com](http
 
 Bu proje ödevimizin ilk adımıdır ,ilk adımda 10 farklı compenent yapımını öğrendik
 
+Projeyi çalıştırmak için ilk önce vue eklentilerini yüklüyoruz ve daha sonra terminali açıp
+ // npm run serve 
+
 **Yapılan 10 Compenent (coffemania.com)**
 - Menunün üst kısmı (search box - logo - languageselect -login-sepet)
 - menünün alt kısmı (yönlendirme linkleri)
