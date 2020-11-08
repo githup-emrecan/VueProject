@@ -1,22 +1,27 @@
-# Vue.js Single File Components
+# e-commerce website construction with Vue.js 
 
-[![](https://vueschool.s3.amazonaws.com/319b16f26e0633411fdd4ba155cfa321/vuejs-single-file-components.jpeg)](https://vueschool.io/courses/vuejs-single-file-components)
+[![](https://madewithvuejs.com/storage/nova-images/8nmVx17ERGjIPOyr1poPdMBiZxwWDCy50Oez1m38.jpeg)]()
 
-This repository contains the example code for the [Single File Components](https://vueschool.io/courses/vuejs-single-file-components) course.
+Bu Proje [Yalova Üniversitesi Bilgisayar Mühendisliği](http://bilgisayar.yalova.edu.tr/) Web Programlama Dersi Ödevidir.
 
 
-Learning how to work with Single File Components is a vital step in mastering Vue.js.
+Bu ödevde Vue.js ile proje geliştirmeyi öğreniyoruz ve [Coffemania.com](https://www.coffeemania.com/)adlı siteyi baz alıyoruz.
 
-In this course you’ll learn everything you need to know about Vue’s Single File Components, so you can start using them in your projects today and speed up your development.
+Bu proje ödevimizin ilk adımıdır ,ilk adımda 10 farklı compenent yapımını öğrendik
 
-**By the end of this course you will know**
-- How to scaffold a new Vue.js project with Vue CLI 3
-- What the drawbacks of global components are
-- How to take advantage of the build step and Pre-Processors like Jade, Pug, Stylus, and Sass
-- How to reuse your Single File Components by exporting and importing them
-- How to organize your Single File Components according to the official style guide
-- What CSS Modules are and how to use scoped styles in your Single File Components
+**Yapılan 10 Compenent (coffemania.com)**
+- Menunün üst kısmı (search box - logo - languageselect -login-sepet)
+- menünün alt kısmı (yönlendirme linkleri)
+- Login compenenti ( http://localhost:8080/login )
+- Adres ve Ödeme compenenti ( http://localhost:8080/adress )
+- Slide Compenenti ( http://localhost:8080/shower )
+- Hesap bilgileri compenenti ( http://localhost:8080/account)
+- populer Product Compenenti ( http://localhost:8080/product)
+- Product Details Compenenti (Populer product da ki ürünlere tıklayarak)
+- Sepet Compenenti ( http://localhost:8080/productcart)
+- Sepet Detay Compenenti (YAKINDA)
 
-You need a basic understanding of Vue.js Components to enjoy this course. We recommend watching [Vue.js Components Fundamentals](https://vueschool.io/courses/vuejs-components-fundamentals) if you're not already familiar with Vue.js components.
+# Bu Projeyi Yapanlar 
 
-[Click here to watch the course](https://vueschool.io/courses/vuejs-single-file-components)
+-ÖĞRENCİ 1
+-ÖĞRENCİ 2
