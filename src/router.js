@@ -7,6 +7,7 @@ import shower from '../src/views/Shower'
 import account from '../src/views/Infoaccount'
 import product from '../src/views/Product'
 import productdetails from '../src/views/ProductDetails'
+import productcart from '../src/views/CartInfo'
 
 Vue.use(Router)
 
@@ -56,7 +57,11 @@ export default new Router({
     path: '/productdetails/:id',
     name: 'productdetails',
     component:productdetails
-  
+   },
+   {
+    path: '/productcart',
+    name: 'productcart',
+    component:productcart
    }
   ]
 })
