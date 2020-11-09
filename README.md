@@ -1,4 +1,4 @@
-# Vue.js ile e-ticaret web sitesi geliştiriyoruz (Coffemania.com)
+# Vue.js ile e-ticaret sitesi geliştiriyoruz (Coffemania.com)
 
 [![](https://madewithvuejs.com/storage/nova-images/8nmVx17ERGjIPOyr1poPdMBiZxwWDCy50Oez1m38.jpeg)]()
 
@@ -16,16 +16,16 @@ Projeyi çalıştırmak için ilk önce vue eklentilerini yüklüyoruz ve daha s
 **Yapılan 10 Compenent (coffemania.com)**
 - Menunün üst kısmı (search box - logo - languageselect -login-sepet)
 - Menünün alt kısmı (yönlendirme linkleri)
-- Login compenenti ( http://localhost:8080/login )
-- Adres ve Ödeme compenenti ( http://localhost:8080/adress )
+- Login Compenenti ( http://localhost:8080/login )
+- Adres ve Ödeme Compenenti ( http://localhost:8080/adress )
 - Slide Compenenti ( http://localhost:8080/shower )
-- Hesap bilgileri compenenti ( http://localhost:8080/account)
+- Hesap Bilgileri compenenti ( http://localhost:8080/account)
 - populer Product Compenenti ( http://localhost:8080/product)
 - Product Details Compenenti (Populer product da ki ürünlere tıklayarak)
 - Sepet Compenenti ( http://localhost:8080/productcart)
 - Sepet Detay Compenenti (http://localhost:8080/cartdetails)
 
 # Bu Projeyi Yapanlar 
-**------------------------**
-- ÖĞRENCİ 1 
-- ÖĞRENCİ 2
+**------------------------------------------------**
+- Emre Can KALDI (170101002)
+- Ömer Faruk TAŞCAN  (170101047)
