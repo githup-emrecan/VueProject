@@ -1,5 +1,5 @@
 <template>
-<div class="home"> <p>burası Anasayfa</p></div>
+<div class="home"></div>
 </template>
 
 <script>
