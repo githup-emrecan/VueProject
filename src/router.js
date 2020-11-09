@@ -8,7 +8,7 @@ import account from '../src/views/Infoaccount'
 import product from '../src/views/Product'
 import productdetails from '../src/views/ProductDetails'
 import productcart from '../src/views/CartInfo'
-
+import cartdetails from '../src/views/CartDetailsInfo'
 Vue.use(Router)
 
 export default new Router({
@@ -62,6 +62,11 @@ export default new Router({
     path: '/productcart',
     name: 'productcart',
     component:productcart
+   },
+   {
+    path: '/cartdetails',
+    name: 'cartdetails',
+    component:cartdetails
    }
   ]
 })
