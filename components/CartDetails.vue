@@ -44,14 +44,14 @@
         <button class="cont"><p>Alışverişe Devam Et</p></button>
         <button class="del"><p>Sepeti Boşalt</p></button>
         <button class="up"><p>Sepeti Güncelle</p></button>
-        <button class="end"><p>Alışverişi Tamamla</p></button>
+       <nuxt-link :to="{ name: 'Payment' }"> <button class="end"><p>Alışverişi Tamamla</p></button></nuxt-link>
      </div>
      </div>
      <div class="ifzero" v-show="this.products.length===0">
          <p>Sepetinizde ürün bulunmamaktadır.</p>
          <p>Ürünlerimizi inceleyin, beğendiklerinizi sepetinize ekleyin.</p>
          <p>Sepetinizdeki ürünler, siz ürünü satın alana ya da sepetinizden kaldırana kadar sepetinizde tutulacaktır.</p>
-         <button>Alışverişe Devam Et</button>
+        <nuxt-link :to="{ name: 'ShopProducts' }"> <button>Alışverişe Devam Et</button></nuxt-link>
      </div>
 </div>
 </template>
@@ -403,6 +403,10 @@ border: dashed 1px #cfcfcf;
     border: solid 1px #ddd;
     font-size: 14px;
     border-radius: 3px;
+    cursor: pointer;
+}
+.bntcontainer button:focus{
+    outline: 0;
 }
 .bntcontainer .end{
      background: #7b232e;
@@ -443,5 +447,8 @@ border: dashed 1px #cfcfcf;
     background: #7b232e;
     color: white;
     cursor: pointer;
+}
+.ifzero  button:focus{
+    outline: 0;
 }
 </style>

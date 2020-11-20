@@ -242,6 +242,7 @@ font-weight: 600;
 .btn{
     float: left;
     margin-bottom: 10px;
+   
 }
  button{
     width: 276px;
@@ -253,6 +254,7 @@ font-weight: 600;
     text-align: center;
     font-size: 17px;
     font-weight: 300;
+    cursor: pointer;
 }
 button:focus{outline: 0;}
 .social img{
