@@ -1,34 +1,18 @@
 {
-  "name": "vuemmerce",
-  "version": "0.9.5",
-  "description": "Responsive ecommerce template built with Vue.js and Nuxt.js",
-  "author": "ivan lori <ivan.lori@protonmail.com>",
+  "name": "coffemania",
+  "description": "coffemania",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "now-build": "nuxt generate"
+    "start": "nuxt start",
+    "generate": "nuxt generate"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ivanlori/Vuemmerce.git"
-  },
-  "keywords": [
-    "css",
-    "js",
-    "html",
-    "template",
-    "ecommerce",
-    "vuejs",
-    "theme",
-    "responsive",
-    "nuxtjs"
-  ],
-  "license": "MIT",
   "dependencies": {
     "@nuxtjs/font-awesome": "^1.0.4",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "bulma": "^0.9.1",
+    "firebase": "^8.2.1",
     "nuxt": "^2.8.1",
     "vue": "^2.6.10",
     "vue-router": "^3.1.5",

@@ -1,78 +1,9 @@
+import {fireData} from '~/plugins/firebase.js'
+
 export const state = () => ({
-  products: [
-    {
-      id:1,
-      ProductName:"Colombia (250 GR)",
-      Price:64.81,
-      isSlide:0,
-      kdvPrice:"70.00",
-      images: 'https://www.coffeemania.com/epanel/upl/1096/big_colombia_250gr.png' ,
-      images2:'',
-      isAddedToCart: false,
-      isAddedBtn: false,
-      quantity: 1
-  },
-  {
-      id: 2,
-      ProductName:"Mania Blend NEXT (250 GR)",
-      Price:69.44,
-      kdvPrice:"75.00",
-      isSlide:0,
-      images: 'https://www.coffeemania.com/epanel/upl/1084/big_mania_blend_next.png' ,
-      images2:'',
-      isAddedToCart: false,
-      isAddedBtn: false,
-      quantity: 1
-  },
-  {
-    id:3,
-      ProductName:"Ethiopia (250 GR)",
-      Price:69.44,
-      kdvPrice:"75.00",
-      isSlide:0,
-      images:'https://www.coffeemania.com/epanel/upl/1093/big_ethiopia_250gr.png',
-      images2:'',
-      isAddedToCart: false,
-      isAddedBtn: false,
-      quantity: 1
-  },
-  {
-      id:4,
-      ProductName:"Türk Kahvesi (100 GR)",
-      Price:7.87,
-      kdvPrice:"8.50",
-      isSlide:1,
-      images:'https://www.coffeemania.com/epanel/upl/1098/big_t_kahvesi.png',
-      images2:'https://www.coffeemania.com/epanel/upl/1098/big_WhatsApp%20Image%202020-09-14%20at%2011.39.06.jpeg',
-      isAddedToCart: false,
-      isAddedBtn: false,
-      quantity: 1
-  },
-  {
-      id:5,
-      ProductName:"El Salvador (250 GR)",
-      Price:64.81,
-      kdvPrice:"70.00",
-      isSlide:0,
-      images:'https://www.coffeemania.com/epanel/upl/1089/big_el_salvador_250gr.png',
-      images2:'',
-      isAddedToCart: false,
-      isAddedBtn: false,
-      quantity: 1
-  }
-  ],
-  userInfo: {
-    isLoggedIn: false,
-    isSignedUp: false,
-    hasSearched: false,
-    name: '',
-    productTitleSearched: ''
-  },
-  systemInfo: {
-    openLoginModal: false,
-    openSignupModal: false,
-    openCheckoutModal: false
-  }
+  products: [],
+  users: [],
+  orders:[]
 })
 
 export const getters = {
@@ -88,6 +19,9 @@ export const getters = {
   },
   getProductById: state => id => {
     return state.products.find(product => product.id == id);
+  },
+  getProductUserId: state => id => {
+    return state.users.find(user => user.id == id);
   },
   isUserLoggedIn: state => {
     return state.userInfo.isLoggedIn;
@@ -113,6 +47,14 @@ export const getters = {
 }
 
 export const mutations = {
+
+  SetProducts(state,array){
+  state.products=array
+  },
+  SetUsers(state,array){
+    state.users=array
+    },
+
   addToCart: (state, id) => {
     state.products.forEach(el => {
       if (id === el.id) {
@@ -184,24 +126,23 @@ export const mutations = {
       }
     });
   },
-  SET_USER(state, authUser) {
-    state.authUser = authUser
-  }
 }
-/* 
+
 export const actions = {
-  async nuxtServerInit({ commit }) {
-    const res = await this.$axios.get("/api/current_user")
-    commit("SET_USER", res.data)
-  },
 
-  async logout({ commit }) {
-    const { data } = await this.$axios.get("/api/logout")
-    if (data.ok) commit("SET_USER", null)
+  fetchProducts ({commit}){
+    var ref = fireData.ref('products')
+    ref.once('value').then(function(snapshot)
+    {
+      commit('SetProducts',snapshot.val())
+    });
   },
-
-  async handleToken({ commit }, token) {
-    const res = await this.$axios.post("/api/stripe", token)
-    commit("SET_USER", res.data)
+  fetchUsers ({commit}){
+    var ref = fireData.ref('users')
+    ref.once('value').then(function(snapshot)
+    {
+      commit('SetUsers',snapshot.val())
+    });
   }
-} */
+  
+} 
