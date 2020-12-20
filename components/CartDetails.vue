@@ -18,7 +18,7 @@
          <input type="text" placeholder="Kişiselleştirme mesajınız">
          </div>
          <div class="padet">
-             <input type="number" name="urunadet_1098__" id="urunadet_1098" value="product.quantity" min="1" max="1000"  v-model="selected">
+             <input type="number" name="quantity" id="quantityvalue" value="1" min="1" v-model="selected">
          </div>
          <div class="pprice"><p>{{product.Price}}</p></div>
          <div class="ptotprice"><p>{{product.Price * product.quantity}}</p></div>

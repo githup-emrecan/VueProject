@@ -1,43 +1,58 @@
 <template>
+<div>
     <div class="account">
         <section>
     <h3>Hesabım</h3>
         <ul>
-            <li v-for="hsp in hesap" :key="hsp.heID"><a :href="hsp.Url">{{hsp.hsName}}</a></li>
+            <li><a  @click="isOpen =!isOpen">Hesap Bilgilerim</a></li>
+            <li><a>Teslimat Adreslerim</a></li>
+            <li><a>Fatura Bilgilerim</a></li>
+            <li><a>Yardım</a></li>
+            <li><a>Bize Ulaşın</a></li>
+            <li><a>Güvenli Çıkış</a></li>
         </ul>
       </section>
       <section>
   <h3>Listelerim</h3>  
         <ul>
-            <li v-for="lst in liste" :key="lst.lstId"><a :href="lst.Url">{{lst.lstName}}</a></li>
+            <li><a>Alışveriş Listem</a></li>
+            <li><a>Fiyat Bildirim Listem</a></li>
         </ul>
       </section>
     </div>
+   <div class="bilgi">
+         <div class="bilgicontainer1" v-if="isOpen" >
+             <AccountInfo> </AccountInfo>
+         </div>
+         <div class="bilgicontainer2">
+             
+         </div>
+   </div>
+
+</div>
+   
+    
 </template>
 
 <script>
+
+import AccountInfo from '../components/AccountInfo'
 export default {
 name:'account',
 data(){
     return{
-       hesap:[
-           {hsName:'Hesap Bilgilerim', heId:1 , Url:'#' },
-           {hsName:'Teslimat Adreslerim', heId:2 , Url:'#' },
-           {hsName:'Fatura Bilgilerim', heId:3 , Url:'#' },
-           {hsName:'Yardım', heId:4 , Url:'#' },
-           {hsName:'Bize Ulaşın', heId:5 , Url:'#' },
-           {hsName:'Güvenli Çıkış', heId:6 , Url:'#' },
-       ],
-       liste:[
-           {lstName:'Alışveriş Listem', lstId:1 , Url:'#' },
-           {lstName:'Fiyat Bildirim Listem', lstId:2 , Url:'#' }
-       ]
+     isOpen: false,
+     isCOpen: false
     }
-}    
+  },
+components:{
+    AccountInfo
+}
 }
 </script>
 
 <style scoped>
+
 .account{
     float:left;
     margin-top: 2em;
@@ -45,6 +60,14 @@ data(){
     font-family: ubuntu, Helvetica, Arial, sans-serif;
     width: 20%;
      color:gray;
+}
+
+.bilgi{
+    width: 60%;
+    height: 350px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 4em;
 }
 h3{
     margin-left: 3em;

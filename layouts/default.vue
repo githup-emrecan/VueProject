@@ -14,7 +14,8 @@ import VmHeader from '@/components/header/Header';
 export default {
   components: {
     VmHeader
-  }
+  },
+ 
 }
 </script>
 
