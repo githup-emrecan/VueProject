@@ -1,5 +1,7 @@
 <template>
-<div class="top">
+<div>
+<div class="loading" v-if="!this.$store.getters.getProductById(this.$route.params.id)"> ürün id gelirken bir sorunla karşılaşıldı </div>
+<div class="top" v-else >
 <section>
 <div class="imgcontainer" v-show="product.isSlide === 0"><img :src="product.images" alt=""> </div>
 <div class="imgcontainer" v-show="product.isSlide === 1">
@@ -23,8 +25,8 @@
     </div>
 <section class="btn"> 
 <div class="adet">
-    <input type="number" name="quantity" id="quantityvalue" value="1" min="1" @change="onSelectQuantity(product.id)" v-model="selected">Adet</div>
-   <div class="btn"> <button class="add" @click="addToCart(product.id)">SEPETE EKLE</button></div>
+    <input type="number" name="quantity" id="quantityvalue" value="1" min="1" v-model="selected">Adet</div>
+   <div class="btn"> <button class="add" @click="AddToCart(product.id,product.ProductName,product.Price,product.images,selected)">SEPETE EKLE</button></div>
 </section>
 <div class="social">
     <img src="https://www.coffeemania.com/assets/images/facebook.jpg" alt="">
@@ -36,6 +38,7 @@
 </section>
 <div class="showpopler">
  <showpopproduct></showpopproduct>
+</div>
 </div>
 </div>
 </template>
@@ -65,32 +68,26 @@ export default {
 
   mounted () {
     this.product = this.$store.getters.getProductById(this.$route.params.id);
-    this.selected = this.product.quantity;
     this.img=this.product.images;
   },
 
   methods: {
+
     next(){
       this.img=this.product.images;
     },
     prev(){
       this.img=this.product.images2;
     },
-    addToCart (id) {
-      let data = {
-        id: id,
-        status: true
-      }
-      this.$store.commit('addToCart', id);
-      this.$store.commit('setAddedBtn', data);
-    },
-    removeFromCart (id) {
-      let data = {
-        id: id,
-        status: false
-      }
-      this.$store.commit('removeFromCart', id);
-      this.$store.commit('setAddedBtn', data);
+    AddToCart(pid,ProductName,Price,images,selected){
+    let data ={
+        pid:pid,
+        ProductName:ProductName,
+        Price:Price,
+        images:images,
+        piece: selected
+    }
+     this.$store.dispatch('AddToCart',data)
     },
     onSelectQuantity (id) {
       let data = {
@@ -104,7 +101,12 @@ export default {
 </script>
 
 <style scoped>
-
+.loading{
+  margin: auto;
+  font-size: 40px;
+  text-align: center;
+  color: #7b232e;
+}
 *{
     font-family: ubuntu, Helvetica, Arial, sans-serif;
 }

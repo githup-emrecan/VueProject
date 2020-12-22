@@ -1,45 +1,27 @@
 import {fireData} from '~/plugins/firebase.js'
-
+import {fireAuth} from '~/plugins/firebase.js'
 export const state = () => ({
   products: [],
   users: [],
-  orders:[]
+  orders:[],
+  cart:[],
+  user: null,
+  isAuthenticated: false,
 })
 
 export const getters = {
-  productsAdded: state => {
-    return state.products.filter(el => {
-      return el.isAddedToCart;
-    });
+  isAuthenticated(state) {
+    return state.user !== null && state.user !== undefined;
+},
+  products: (state) => {
+    return state.products
+ },
+ productsInCart: (state) => {
+     return state.cart
   },
-  productsAddedToFavourite: state => {
-    return state.products.filter(el => {
-      return el.isFavourite;
-    });
-  },
+  
   getProductById: state => id => {
     return state.products.find(product => product.id == id);
-  },
-  getProductUserId: state => id => {
-    return state.users.find(user => user.id == id);
-  },
-  isUserLoggedIn: state => {
-    return state.userInfo.isLoggedIn;
-  },
-  isUserSignedUp: state => {
-    return state.userInfo.isSignedUp;
-  },
-  getUserName: state => {
-    return state.userInfo.name;
-  },
-  isLoginModalOpen: state => {
-    return state.systemInfo.openLoginModal;
-  },
-  isSignupModalOpen: state => {
-    return state.systemInfo.openSignupModal;
-  },
-  isCheckoutModalOpen: state => {
-    return state.systemInfo.openCheckoutModal;
   },
   quantity: state => {
     return state.products.quantity;
@@ -48,76 +30,21 @@ export const getters = {
 
 export const mutations = {
 
+
   SetProducts(state,array){
   state.products=array
   },
   SetUsers(state,array){
     state.users=array
     },
-
-  addToCart: (state, id) => {
-    state.products.forEach(el => {
-      if (id === el.id) {
-        el.isAddedToCart = true;
-      }
-    });
-  },
-  setAddedBtn: (state, data) => {
-    state.products.forEach(el => {
-      if (data.id === el.id) {
-        el.isAddedBtn = data.status;
-      }
-    });
-  },
-  removeFromCart: (state, id) => {
-    state.products.forEach(el => {
-      if (id === el.id) {
-        el.isAddedToCart = false;
-      }
-    });
-  },
-  removeProductsFromFavourite: state => {
-    state.products.filter(el => {
-      el.isFavourite = false;
-    });
-  },
-  isUserLoggedIn: (state, isUserLoggedIn) => {
-    state.userInfo.isLoggedIn = isUserLoggedIn;
-  },
-  isUserSignedUp: (state, isSignedUp) => {
-    state.userInfo.isSignedUp = isSignedUp;
-  },
-  setHasUserSearched: (state, hasSearched) => {
-    state.userInfo.hasSearched = hasSearched;
-  },
-  setUserName: (state, name) => {
-    state.userInfo.name = name;
-  },
-  setProductTitleSearched: (state, titleSearched) => {
-    state.userInfo.productTitleSearched = titleSearched;
-  },
-  showLoginModal: (state, show) => {
-    state.systemInfo.openLoginModal = show;
-  },
-  showSignupModal: (state, show) => {
-    state.systemInfo.openSignupModal = show;
-  },
-  showCheckoutModal: (state, show) => {
-    state.systemInfo.openCheckoutModal = show;
-  },
-  addToFavourite: (state, id) => {
-    state.products.forEach(el => {
-      if (id === el.id) {
-        el.isFavourite = true;
-      }
-    });
-  },
-  removeFromFavourite: (state, id) => {
-    state.products.forEach(el => {
-      if (id === el.id) {
-        el.isFavourite = false;
-      }
-    });
+  SetCart(state,array){
+      state.cart=array
+      },
+ setIsAuthenticated(state, payload) {
+        state.isAuthenticated = payload;
+    },
+  setUser(state, payload) {
+      state.user = payload;
   },
   quantity: (state, data) => {
     state.products.forEach(el => {
@@ -130,18 +57,111 @@ export const mutations = {
 
 export const actions = {
 
+  userLogin({ commit }, { email, password }) {
+    fireAuth.signInWithEmailAndPassword(email, password)
+        .then(user => {
+            commit('setUser', user);
+            commit('setIsAuthenticated', true);
+           /* router.push('/about'); */
+        })
+        .catch(() => {
+            commit('setUser', null);
+            commit('setIsAuthenticated', false);
+          /*  router.push('/');  */
+        });
+},
+userSignOut({ commit }) {
+   fireAuth.signOut()
+      .then(() => {
+          commit('setUser', null);
+          commit('setIsAuthenticated', false);
+         /*  router.push('/'); */
+      }) 
+      .catch(() => {
+          commit('setUser', null);
+          commit('setIsAuthenticated', false);
+        /*  router.push('/'); */
+      });
+},
+  AddToCart({ commit }, array) {
+    commit('AddToCart', array)
+  },
+
+  AddToCart({state,dispatch},array){
+    if(state.cart.filter(c => c.pid == array.pid).length>0) {
+     var ItemID = state.cart.find(c=>c.pid===array.pid).id
+     dispatch('changePiece',{id:ItemID, piece:1})
+      return;
+    }
+    var cart = state.cart;
+    if(cart.length >0 ){
+      var id = cart[cart.length-1].id+1;
+    }
+    else id=1;
+    var pid = array.pid;
+    var ProductName = array.ProductName;
+    var Price = array.Price;
+    var images = array.images;
+    var piece = array.piece;
+    var newCart = {id,pid,ProductName,Price,images,piece}
+
+    var ref = fireData.ref('cart')
+    ref.push(newCart)
+    dispatch('fetchcart')
+  },
+
+ changePiece({state,dispatch},id_count){
+    var ref = fireData.ref('cart')
+    var id=id_count.id
+    var item=state.cart.find(cart => cart.id === id)
+    var nCount = id_count.piece + item.piece
+    var key=item.key
+    if (nCount<=0) {
+    
+    } else {
+      ref.child(key).update({
+        piece:nCount
+      })
+      dispatch('fetchcart')
+    }
+  },
+
+  deleteCart({state,dispatch},id){
+    var ref = fireData.ref('cart')
+    var key=state.cart.find(cart => cart.id === id).key
+    ref.child(key).remove()
+    dispatch('fetchcart')
+  },
+
   fetchProducts ({commit}){
     var ref = fireData.ref('products')
     ref.once('value').then(function(snapshot)
     {
-      commit('SetProducts',snapshot.val())
+      let arr =[]
+      if (snapshot.val()!=null) {    
+        arr = Object.entries(snapshot.val()).map(e => Object.assign(e[1], { key: e[0] }))
+      }
+      commit('SetProducts', arr)
     });
   },
-  fetchUsers ({commit}){
-    var ref = fireData.ref('users')
+
+  fetchcart ({commit}){
+    var ref = fireData.ref('cart')
     ref.once('value').then(function(snapshot)
     {
-      commit('SetUsers',snapshot.val())
+      let arr =[]
+      if (snapshot.val()!=null) {    
+        arr = Object.entries(snapshot.val()).map(e => Object.assign(e[1], { key: e[0] }))
+      }
+      commit('SetCart', arr)
+    });
+  },
+  fetchUsers ({state,commit}){
+    var ref = fireData.ref('users/'+ state.user.user.uid)
+    ref.once('value').then(function(snapshot)
+    {
+      let arr = Object.entries(snapshot.val()).map(e => Object.assign(e[1], { key: e[0] }))
+      commit('SetUsers',arr)
     });
   }
   

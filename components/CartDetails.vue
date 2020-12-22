@@ -21,7 +21,7 @@
              <input type="number" name="quantity" id="quantityvalue" value="1" min="1" v-model="selected">
          </div>
          <div class="pprice"><p>{{product.Price}}</p></div>
-         <div class="ptotprice"><p>{{product.Price * product.quantity}}</p></div>
+         <div class="ptotprice"><p>{{product.Price * product.piece}}</p></div>
          <div class="pclose"><a href="" @click="removeFromCart(product.id)">x</a></div>
      </div>
      <div class="productPrice">
@@ -66,10 +66,11 @@ export default {
     },
     computed: {
 			products () {
-				return this.$store.getters.productsAdded;
-			},
-             calculateToplamPrice (){
-						 let productsAdded = this.$store.getters.productsAdded,
+				return this.$store.getters.productsInCart;
+            },
+             
+            calculateToplamPrice (){
+						let productsAdded = this.$store.getters.productsInCart,
 						pricesArray = [],
                         finalPrice = '',
                         kdvPrice = 0,
@@ -78,8 +79,8 @@ export default {
                         
                         productsAdded.forEach(product => {
 
-					if (product.quantity >= 1) {
-						quantity = product.quantity;
+					if (product.piece >= 1) {
+						quantity = product.piece;
 					}
 
 					pricesArray.push((product.Price * quantity)); // get the price of every product added and multiply quantity
@@ -92,7 +93,7 @@ export default {
 
             },
             calculateKdv (){
-						 let productsAdded = this.$store.getters.productsAdded,
+						 let productsAdded = this.$store.getters.productsInCart,
 						pricesArray = [],
                         finalPrice = '',
                         kdvPrice = 0,
@@ -100,8 +101,8 @@ export default {
                         
                         productsAdded.forEach(product => {
 
-					if (product.quantity >= 1) {
-						quantity = product.quantity;
+					if (product.piece >= 1) {
+						quantity = product.piece;
 					}
 
 					pricesArray.push((product.Price * quantity)); // get the price of every product added and multiply quantity
@@ -113,15 +114,15 @@ export default {
 
             },
             calculatePrice (){
-						 let productsAdded = this.$store.getters.productsAdded,
+						let productsAdded = this.$store.getters.productsInCart,
 						pricesArray = [],
 						finalPrice = '',
                         quantity = 1;
                         
                         productsAdded.forEach(product => {
 
-					if (product.quantity >= 1) {
-						quantity = product.quantity;
+					if (product.piece >= 1) {
+						quantity = product.piece;
 					}
 
 					pricesArray.push((product.Price * quantity)); // get the price of every product added and multiply quantity
@@ -134,20 +135,15 @@ export default {
 
 			buyLabel () {
 				let totalProducts = this.products.length,
-						productsAdded = this.$store.getters.productsAdded;
+						productsAdded = this.$store.getters.productsInCart;
 				
 				return totalProducts;
 		}
 	},
 
 	methods: {
-		removeFromCart (id) {
-			let data = {
-					id: id,
-					status: false
-			}
-			this.$store.commit('removeFromCart', id);
-			this.$store.commit('setAddedBtn', data);
+			removeFromCart (id) {
+		this.$store.dispatch('deleteCart',id)
 		}
 	}   
     

@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import VmHeader from '@/components/header/Header';
 
+import VmHeader from '@/components/header/Header';
 
 export default {
   components: {
     VmHeader
-  },
- 
+  },    
+
 }
 </script>
 

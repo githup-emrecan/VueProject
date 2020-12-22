@@ -26,8 +26,16 @@ export default {
 name:'accountInfo',
  computed: {
     users () {
-        return this.$store.state.users;
+        return this.$store.getters.SetUsers;
     }
+  },
+  mounted(){
+      this.getuser();
+  },
+  methods:{
+      getuser() {
+            this.$store.dispatch('fetchUsers');
+        }
   }
 }
 </script>

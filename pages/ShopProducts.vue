@@ -15,14 +15,13 @@ export default {
      showerSlide,
      nuxtproduct
     },
-     created(){
+    created(){
      this.fetchProducts()
   },
   methods :{
     ...mapActions({
-          fetchProducts : 'fetchProducts'
+          fetchProducts : 'fetchProducts',
     })
-
   }
 };
 </script>

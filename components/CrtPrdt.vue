@@ -44,11 +44,10 @@ export default {
     name:'Pcart',
          computed: {
 			products () {
-				return this.$store.getters.productsInCart;
-            },
-             
-            calculateToplamPrice (){
-						let productsAdded = this.$store.getters.productsInCart,
+				return this.$store.state.cart;
+			},
+             calculateToplamPrice (){
+						 let productsAdded = this.$store.state.cart,
 						pricesArray = [],
                         finalPrice = '',
                         kdvPrice = 0,
@@ -92,7 +91,7 @@ export default {
 
             },
             calculatePrice (){
-						let productsAdded = this.$store.getters.productsInCart,
+						 let productsAdded = this.$store.getters.productsInCart,
 						pricesArray = [],
 						finalPrice = '',
                         quantity = 1;
@@ -113,7 +112,7 @@ export default {
 
 			buyLabel () {
 				let totalProducts = this.products.length,
-						productsAdded = this.$store.getters.productsInCart;
+						productsAdded = this.$store.getters.productsAdded;
 				
 				return totalProducts;
 		}
@@ -121,7 +120,7 @@ export default {
 
 	methods: {
 		removeFromCart (id) {
-		this.$store.dispatch('deleteCart',id)
+			this.$store.commit('removeFromCart', id);
 		}
 	}   
     

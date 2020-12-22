@@ -64,6 +64,7 @@
 </template>
 <script>
 import cartProductInfo from './ProductCart';
+import {mapGetters} from "vuex";
 export default {
   data(){
     return{
@@ -76,7 +77,7 @@ export default {
   },
   computed: {
 			products () {
-				return this.$store.getters.productsAdded;
+				return this.$store.getters.productsInCart;
             }
             }
 

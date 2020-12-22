@@ -4,12 +4,11 @@
 </template>
 
 <script> 
-
-
-
+import {mapActions} from "vuex";
 export default {
-  name: 'index'
+ 
 };
+
 </script>
 <style  scoped>
 

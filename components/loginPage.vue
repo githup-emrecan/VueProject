@@ -7,15 +7,15 @@
     <form @submit.prevent="checkForm" autocomplete="off">
     <table>
       <tr>  
-      <td class="em">{{email}}</td>
+      <td class="em">E-mail</td>
       <td>
-        <input type="text" v-model="form.CheckEmail">
+        <input type="text" v-model="email">
      <h6 v-if="!emailisValid">{{requere}}</h6>
         </td>
       </tr>
       <tr> 
-      <td class="em">{{password}}</td>
-      <td><input type="password" v-model="form.CheckPassword">
+      <td class="em">Şifre</td>
+      <td><input type="password" v-model="password">
       <h6 v-if="!passwordisValid">{{requere}}</h6>
       </td>
       </tr>
@@ -25,7 +25,7 @@
         </tr></table></form>
       <div class="buton container">
         <button class="button">Giriş</button>
-     <button class="button button2" type="submit" value="Submit" @click="a()">Facebook ile giriş</button>
+     <button class="button button2" type="submit" value="Submit" @click="submit()">Facebook ile giriş</button>
       </div>
   </div>
 </div>
@@ -40,22 +40,29 @@ export default {
       Bigtitle: 'Üye Girişi',
       text: 'Eğer sitemize daha önceden kayıt olmuşsanız e-mail ve şifreniz ile sisteme giriş yapabilirsiniz.',
      requere:'Bu alanın doldurulması zorunludur.',
-     email: 'E-mail',
+     email: '',
      isrequere:false,
-      password: 'Şifre',
-      form:{
-        CheckEmail:null,
-      CheckPassword:null
-      }
+      password: '',
     }
   },
+   methods: {
+        submit() {
+           
+                this.$store.dispatch('userLogin', {
+                    email: this.email,
+                    password: this.password
+                });
+            
+        }
+    },
   computed:{
       emailisValid(){
-        return !!this.form.CheckEmail;
+        return !!this.email;
       },
       passwordisValid(){
-        return !!this.form.CheckPassword;
+        return !!this.password;
       }
+
   }
 
 }
