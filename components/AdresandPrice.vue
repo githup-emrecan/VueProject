@@ -19,22 +19,22 @@
       </tr>
       <tr>
         <td>{{email}}</td>
-      <td><input type="text"></td>
+      <td><input type="text" v-model="ilce"></td>
       </tr>
       <tr>
         <td>{{tel}}</td>
-      <td><input type="text"></td>
+      <td><input type="text" ></td>
       </tr>
           <tr>
             <td>il</td>
       <td><select name="" id="" class="select-box">
-          <option value="" v-for="city in citys" :key="city.value">{{city.ctname}}</option>
+          <option v-for="city in citys" :key="city.value" >{{city.ctname}}</option>
           </select></td>
           </tr>
           <tr>
             <td>ilçe</td>
-      <td><select name="" id="" class="select-box">
-          <option value="" v-for="town in towns" :key="town.value">{{town.tname}}</option>
+      <td><select name="" id="" class="select-box"  v-model="il">
+          <option v-for="town in towns" :key="town.value" >{{town.tname}}</option>
           </select></td>
           </tr>
       <tr>
@@ -48,7 +48,7 @@
         </table>
         <div class="using"> <input type="checkbox" id="checkbox" v-model="checked">
         <label for="checkbox">fatura adresim olarak kullan</label></div>
-
+  <a @click=" AddTheOrder(il,ilce)">ordere ekleyin</a>
          </div>
     </div>
 </template>
@@ -67,6 +67,8 @@ export default {
       tel: 'Telefon',
       adres: 'Adres',
       pkod: 'Posta kodu',
+      il:'',
+      ilce:'',
       citys: [
         { ctname: '', value: 'il0' },
         { ctname: 'İlAdı1', value: 'il1' },
@@ -86,6 +88,16 @@ export default {
         { tname: 'İlçeAdı6', value: 'ilce6' }
       ]
     }
+  },
+   methods:{
+     
+         AddTheOrder(il,ilce){
+    let data ={
+       il:this.il,
+       ilce:this.ilce
+    }
+     this.$store.dispatch('AddTheOrder',data)
+    },
   }
 }
 </script>

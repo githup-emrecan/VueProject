@@ -8,7 +8,7 @@
 
 import LoginPage from '../components/loginPage';
 export default {
-  name: 'login',
+  name: 'Signin',
   components: {
      LoginPage
     }

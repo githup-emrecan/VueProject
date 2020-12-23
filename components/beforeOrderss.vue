@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="">
+    <div class="tbot">
         <section>
     <h3>ÖNCEKİ SİPARİŞLER</h3>
            <div class="ordersCard" v-for="user in users" :key="user.id">
@@ -62,6 +62,9 @@ computed: {
 </script>
 
 <style scoped>
+.tbot{
+    margin-bottom: 3em;
+}
 h3{
     color:#7b232e;
 font-weight: 600;

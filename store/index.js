@@ -26,7 +26,7 @@ export const getters = {
   getusers:(state) => {
     return state.users
  },
-  gerorders:(state) => {
+  Getorders:(state) => {
     return state.orders
   },
   getProductById: state => id => {

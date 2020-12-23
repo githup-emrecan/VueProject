@@ -4,7 +4,7 @@
   <div class="container">
     <h2>{{Bigtitle}}</h2>
     <p>{{text}}</p>
-    <form @submit.prevent="checkForm" autocomplete="off">
+    <form @submit.prevent="signin" >
     <table>
       <tr>  
       <td class="em">E-mail</td>
@@ -25,7 +25,8 @@
         </tr></table></form>
       <div class="buton container">
         <button class="button">Giriş</button>
-     <button class="button button2" type="submit" value="Submit" @click="submit()">Facebook ile giriş</button>
+     <button class="button button2" type="submit" value="Submit">Facebook ile giriş</button>
+     <div class="clss" v-if="!isAuthenticated"> asdasdasdasdasda </div>
       </div>
   </div>
 </div>
@@ -41,12 +42,13 @@ export default {
       text: 'Eğer sitemize daha önceden kayıt olmuşsanız e-mail ve şifreniz ile sisteme giriş yapabilirsiniz.',
      requere:'Bu alanın doldurulması zorunludur.',
      email: '',
+     password: '',
      isrequere:false,
-      password: '',
+      
     }
   },
    methods: {
-        submit() {
+        signin() {
            
                 this.$store.dispatch('userLogin', {
                     email: this.email,
@@ -61,7 +63,10 @@ export default {
       },
       passwordisValid(){
         return !!this.password;
-      }
+      },
+      isAuthenticated() {
+            return this.$store.getters.isAuthenticated;
+        }
 
   }
 
