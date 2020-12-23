@@ -5,7 +5,7 @@
     <h3>Hesabım</h3>
         <ul>
             <li><a  @click="isOpen =!isOpen">Hesap Bilgilerim</a></li>
-            <li><a>Teslimat Adreslerim</a></li>
+            <li><a @click="isCOpen =!isCOpen">Teslimat Adreslerim</a></li>
             <li><a>Fatura Bilgilerim</a></li>
             <li><a>Yardım</a></li>
             <li><a>Bize Ulaşın</a></li>
@@ -24,8 +24,8 @@
          <div class="bilgicontainer1" v-if="isOpen" >
              <AccountInfo> </AccountInfo>
          </div>
-         <div class="bilgicontainer2">
-             
+         <div class="bilgicontainer2" v-if="isCOpen">
+             <AccountAdress></AccountAdress>
          </div>
    </div>
 
@@ -37,6 +37,7 @@
 <script>
 
 import AccountInfo from '../components/AccountInfo'
+import AccountAdress from '../components/AccountAdress'
 export default {
 name:'account',
 data(){
@@ -46,7 +47,8 @@ data(){
     }
   },
 components:{
-    AccountInfo
+    AccountInfo,
+    AccountAdress
 }
 }
 </script>

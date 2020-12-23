@@ -1,5 +1,8 @@
 import {fireData} from '~/plugins/firebase.js'
-import {fireAuth} from '~/plugins/firebase.js'
+
+
+
+
 export const state = () => ({
   products: [],
   users: [],
@@ -7,6 +10,7 @@ export const state = () => ({
   cart:[],
   user: null,
   isAuthenticated: false,
+  deneme:'VI9RGY15xHdCIc9FuTaQojZbvPJ3'
 })
 
 export const getters = {
@@ -19,7 +23,12 @@ export const getters = {
  productsInCart: (state) => {
      return state.cart
   },
-  
+  getusers:(state) => {
+    return state.users
+ },
+  gerorders:(state) => {
+    return state.orders
+  },
   getProductById: state => id => {
     return state.products.find(product => product.id == id);
   },
@@ -46,6 +55,9 @@ export const mutations = {
   setUser(state, payload) {
       state.user = payload;
   },
+  SetOrders(state,array){
+    state.orders=array
+    },
   quantity: (state, data) => {
     state.products.forEach(el => {
       if (data.id === el.id) {
@@ -58,20 +70,19 @@ export const mutations = {
 export const actions = {
 
   userLogin({ commit }, { email, password }) {
-    fireAuth.signInWithEmailAndPassword(email, password)
+    var ref = fireAuth.auth
+    ref.signInWithEmailAndPassword(email, password)
         .then(user => {
             commit('setUser', user);
-            commit('setIsAuthenticated', true);
-           /* router.push('/about'); */
+            commit('setIsAuthenticated', true);         
         })
         .catch(() => {
             commit('setUser', null);
             commit('setIsAuthenticated', false);
-          /*  router.push('/');  */
         });
 },
 userSignOut({ commit }) {
-   fireAuth.signOut()
+   fireAuth.auth.signOut()
       .then(() => {
           commit('setUser', null);
           commit('setIsAuthenticated', false);
@@ -85,6 +96,14 @@ userSignOut({ commit }) {
 },
   AddToCart({ commit }, array) {
     commit('AddToCart', array)
+  },
+  AddTheOrder({state,dispatch},array){
+    var İlname = array.il;
+    var ilcename = array.ilce;
+    var newOrder = {İlname,ilcename}
+
+    var ref = fireData.ref('orders')
+    ref.push(newOrder)
   },
 
   AddToCart({state,dispatch},array){
@@ -156,13 +175,23 @@ userSignOut({ commit }) {
       commit('SetCart', arr)
     });
   },
+  
   fetchUsers ({state,commit}){
-    var ref = fireData.ref('users/'+ state.user.user.uid)
+    var ref = fireData.ref('users')
     ref.once('value').then(function(snapshot)
     {
       let arr = Object.entries(snapshot.val()).map(e => Object.assign(e[1], { key: e[0] }))
       commit('SetUsers',arr)
     });
+  },
+  fetchOrders ({state,commit}){
+    var ref = fireData.ref('orders')
+    ref.once('value').then(function(snapshot)
+    {
+      let arr = Object.entries(snapshot.val()).map(e => Object.assign(e[1], { key: e[0] }))
+      commit('SetOrders',arr)
+    });
   }
+
   
 } 

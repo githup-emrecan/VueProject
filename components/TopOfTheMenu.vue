@@ -39,7 +39,7 @@
     <div class="sub-menu" v-if="isOpen">
        <ul>
          <li><nuxt-link :to="{ name: 'Account' }">Hesabım</nuxt-link></li>
-         <li>Siparişlerim</li>
+         <li><nuxt-link :to="{ name: 'Order' }">Siparişlerim</nuxt-link></li>
          <li>Güvenli Çıkış</li>
        </ul>               
     </div>
