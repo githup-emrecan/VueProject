@@ -1,5 +1,5 @@
 import {fireData} from '~/plugins/firebase.js'
-
+import {fireAuth} from '~/plugins/firebase.js'
 
 
 
@@ -70,8 +70,7 @@ export const mutations = {
 export const actions = {
 
   userLogin({ commit }, { email, password }) {
-    var ref = fireAuth.auth
-    ref.signInWithEmailAndPassword(email, password)
+    fireAuth.signInWithEmailAndPassword(email, password)
         .then(user => {
             commit('setUser', user);
             commit('setIsAuthenticated', true);         
@@ -177,13 +176,22 @@ userSignOut({ commit }) {
   },
   
   fetchUsers ({state,commit}){
-    var ref = fireData.ref('users')
+    var ref = fireData.ref('users/'+ state.user.user.uid)
     ref.once('value').then(function(snapshot)
     {
       let arr = Object.entries(snapshot.val()).map(e => Object.assign(e[1], { key: e[0] }))
       commit('SetUsers',arr)
     });
   },
+ /*fetchUsers ({state,commit}){
+    var ref = fireData.ref('users')
+    ref.once('value').then(function(snapshot)
+    {
+      let arr = Object.entries(snapshot.val()).map(e => Object.assign(e[1], { key: e[0] }))
+      commit('SetUsers',arr)
+    });
+  },*/
+
   fetchOrders ({state,commit}){
     var ref = fireData.ref('orders')
     ref.once('value').then(function(snapshot)

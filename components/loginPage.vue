@@ -4,7 +4,7 @@
   <div class="container">
     <h2>{{Bigtitle}}</h2>
     <p>{{text}}</p>
-    <form @submit.prevent="signin" >
+    <form >
     <table>
       <tr>  
       <td class="em">E-mail</td>
@@ -24,8 +24,8 @@
       <td class="forget">Şifremi unuttum</td>
         </tr></table></form>
       <div class="buton container">
-        <button class="button">Giriş</button>
-     <button class="button button2" type="submit" value="Submit">Facebook ile giriş</button>
+        <button class="button" type="submit" value="Submit" @click="signin()">Giriş</button>
+     <button class="button button2" >Facebook ile giriş</button>
      <div class="clss" v-if="!isAuthenticated"> asdasdasdasdasda </div>
       </div>
   </div>
