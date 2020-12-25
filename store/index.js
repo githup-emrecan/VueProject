@@ -81,7 +81,7 @@ export const actions = {
         });
 },
 userSignOut({ commit }) {
-   fireAuth.auth.signOut()
+   fireAuth.signOut()
       .then(() => {
           commit('setUser', null);
           commit('setIsAuthenticated', false);
@@ -101,7 +101,7 @@ userSignOut({ commit }) {
     var ilcename = array.ilce;
     var newOrder = {İlname,ilcename}
 
-    var ref = fireData.ref('orders')
+    var ref = fireData.ref('orders').child(state.user.user.uid)
     ref.push(newOrder)
   },
 
