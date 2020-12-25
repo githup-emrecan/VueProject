@@ -29,10 +29,10 @@
                     </ul>
                 </nav>
             </section>
-            <section>
+            <section v-if="!isAuthenticated">
               <nuxt-link :to="{ name: 'user' }"> <img src="@/assets/user.png" alt="" class="over"></nuxt-link>
            </section>
-           <section v-show="this.products.length>0">
+           <section v-if="isAuthenticated" >
                <div class="accoMenu" @click="isOpen =!isOpen">
    <img src="@/assets\accodrown.png" alt="" class="over">
     <transition name="fade" appear>
@@ -40,7 +40,7 @@
        <ul>
          <li><nuxt-link :to="{ name: 'Account' }">Hesabım</nuxt-link></li>
          <li><nuxt-link :to="{ name: 'Order' }">Siparişlerim</nuxt-link></li>
-         <li>Güvenli Çıkış</li>
+         <li><a @click="logout()" >Güvenli Çıkış</a></li>
        </ul>               
     </div>
     </transition>
@@ -78,8 +78,19 @@ export default {
   computed: {
 			products () {
 				return this.$store.getters.productsInCart;
-            }
-            }
+            },
+
+          isAuthenticated() {
+            return this.$store.getters.isAuthenticated;
+        }
+
+            },
+
+   methods: {
+        logout() {
+            this.$store.dispatch('userSignOut');
+        }
+    }
 
 };
 </script>

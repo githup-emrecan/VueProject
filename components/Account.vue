@@ -9,7 +9,7 @@
             <li><a>Fatura Bilgilerim</a></li>
             <li><a>Yardım</a></li>
             <li><a>Bize Ulaşın</a></li>
-            <li><a>Güvenli Çıkış</a></li>
+            <li><a @click="logout()">Güvenli Çıkış</a></li>
         </ul>
       </section>
       <section>
@@ -49,7 +49,12 @@ data(){
 components:{
     AccountInfo,
     AccountAdress
-}
+},
+ methods: {
+        logout() {
+            this.$store.dispatch('userSignOut');
+        }
+    }
 }
 </script>
 

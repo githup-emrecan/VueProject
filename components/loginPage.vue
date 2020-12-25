@@ -1,7 +1,8 @@
 <template>
-<div class="loginPage">
+<div class="bigcontainer">
+<div class="loginPage" v-if="!isAuthenticated">
   <span>Anasayfa  /</span> {{title}}
-  <div class="container">
+  <div class="container"  >
     <h2>{{Bigtitle}}</h2>
     <p>{{text}}</p>
     <form >
@@ -26,9 +27,13 @@
       <div class="buton container">
         <button class="button" type="submit" value="Submit" @click="signin()">Giriş</button>
      <button class="button button2" >Facebook ile giriş</button>
-     <div class="clss" v-if="!isAuthenticated"> asdasdasdasdasda </div>
+    
       </div>
   </div>
+</div>
+<div class="succes" v-else>
+<span> TEBRİKLER !! </span> Login İşlemi Başarılı Bir Şekilde Gerçekleşti.
+</div>
 </div>
 </template>
 
@@ -162,4 +167,17 @@ table .forget{
 .button2{
   background: #375791;
 }
+.succes{
+  font-size: 26px;
+  margin-left:6%;
+  float: left;
+  margin-top: 2em;
+}
+.succes span {
+  font-size: 35px;
+  color: #7b232e;
+  opacity: 1;
+  margin-right: 10px;
+}
+
 </style>

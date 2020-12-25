@@ -44,7 +44,8 @@
         <button class="cont"><p>Alışverişe Devam Et</p></button>
         <button class="del"><p>Sepeti Boşalt</p></button>
         <button class="up"><p>Sepeti Güncelle</p></button>
-       <nuxt-link :to="{ name: 'Payment' }"> <button class="end"><p>Alışverişi Tamamla</p></button></nuxt-link>
+        <div class="block" v-if="isAuthenticated"><nuxt-link :to="{ name: 'Payment' }"> <button class="end"><p>Alışverişi Tamamla</p></button></nuxt-link></div>
+       <div class="block" v-if="!isAuthenticated"><button class="end"><p>Alışverişi Tamamla</p></button></div>
      </div>
      </div>
      <div class="ifzero" v-show="this.products.length===0">
@@ -113,6 +114,9 @@ export default {
                  return finalPrice.toFixed(3);
 
             },
+            isAuthenticated() {
+            return this.$store.getters.isAuthenticated;
+        },
             calculatePrice (){
 						let productsAdded = this.$store.getters.productsInCart,
 						pricesArray = [],
@@ -400,6 +404,9 @@ border: dashed 1px #cfcfcf;
     font-size: 14px;
     border-radius: 3px;
     cursor: pointer;
+}
+.block{
+    float: right;
 }
 .bntcontainer button:focus{
     outline: 0;

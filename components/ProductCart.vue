@@ -33,7 +33,8 @@
             </div>
             <div class="butoncontainer">
                   <div class="btn1"><nuxt-link :to="{ name: 'DetailCart' }"><button class="show"><p>Sepeti Görüntüle</p></button></nuxt-link></div>
-                  <div class="btn2"><nuxt-link :to="{ name: 'Payment' }"><button class="end"><p>Alışverişi Tamamla</p></button></nuxt-link></div>
+                  <div class="btn2" v-if="isAuthenticated"><nuxt-link :to="{ name: 'Payment' }"><button class="end"><p>Alışverişi Tamamla</p></button></nuxt-link></div>
+                  <div class="btn2" v-if="!isAuthenticated"><button class="end"><p>Alışverişi Tamamla</p></button></div>
             </div>
     </div>
 </template>
@@ -91,6 +92,10 @@ export default {
                  return finalPrice.toFixed(3);
 
             },
+             isAuthenticated() {
+            return this.$store.getters.isAuthenticated;
+        },
+
             calculatePrice (){
 						let productsAdded = this.$store.getters.productsInCart,
 						pricesArray = [],
