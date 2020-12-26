@@ -7,49 +7,49 @@
     <table>
       
       <tr>
-<td>{{name}}</td>
-      <td><input type="text"></td>
+<td>Ad</td>
+      <td><input type="text" v-model="name" ></td>
       </tr>
       <tr>
-        <td>{{surname}}</td>
-      <td><input type="text"></td>
+        <td>Soyad</td>
+      <td><input type="text" v-model="surname"></td>
       </tr>
       <tr>
-        <td>{{tc}}</td>
-      <td><input type="text"></td>
+        <td>TC kimlik No</td>
+      <td><input type="text" v-model="tc"></td>
       </tr>
       <tr>
-        <td>{{email}}</td>
-      <td><input type="text" v-model="ilce"></td>
+        <td>E-mail</td>
+      <td><input type="text" v-model="email"></td>
       </tr>
       <tr>
-        <td>{{tel}}</td>
-      <td><input type="text" ></td>
+        <td>Telefon</td>
+      <td><input type="text" v-model="tel" ></td>
       </tr>
           <tr>
             <td>il</td>
-      <td><select name="" id="" class="select-box">
+      <td><select name="" id="" class="select-box" v-model="il">
           <option v-for="city in citys" :key="city.value" >{{city.ctname}}</option>
           </select></td>
           </tr>
           <tr>
             <td>ilçe</td>
-      <td><select name="" id="" class="select-box"  v-model="il">
+      <td><select name="" id="" class="select-box"  v-model="ilce">
           <option v-for="town in towns" :key="town.value" >{{town.tname}}</option>
           </select></td>
           </tr>
       <tr>
-        <td class="top">{{adres}}</td>
-      <td><textarea name="" id="" cols="30" rows="5" style="margin-top:5px; margin-left: 10px;"></textarea></td>
+        <td class="top">Adres</td>
+      <td><textarea name="" id="" cols="30" rows="5" style="margin-top:5px; margin-left: 10px;" v-model="adres"></textarea></td>
       </tr>
      <tr>
-        <td>{{pkod}}</td>
-      <td><input type="text"></td>
+        <td>Posta kodu</td>
+      <td><input type="text" v-model="pkod"></td>
      </tr>
         </table>
         <div class="using"> <input type="checkbox" id="checkbox" v-model="checked">
         <label for="checkbox">fatura adresim olarak kullan</label></div>
-  <a @click=" AddTheOrder(il,ilce)">ordere ekleyin</a>
+  
          </div>
     </div>
     <div class="listeleme">
@@ -77,10 +77,11 @@
       <h1>TOPLAM</h1>
       <h1>{{ calculateToplamPrice }}</h1>
     </div>
-     
+     <a @click=" AddTheOrder(name,surname,tc,email,tel,adres,il,ilce,pkod,calculateToplamPrice)">
      <div class="btne"  v-show="this.products.length>0">
        DEVAM ET
      </div>
+     </a>
    <div class="ifzero" v-show="this.products.length===0">
          <p>Sepetinizde ürün bulunmamaktadır.</p>
          <p>Ürünlerimizi inceleyin, beğendiklerinizi sepetinize ekleyin.</p>
@@ -98,13 +99,13 @@ export default {
     return {
       title: 'Adres & Ödeme',
       text: 'Teslimat Bilgeri',
-      name: 'Ad',
-      surname: 'Soyad',
-      tc: 'TC kimlik No',
-      email: 'E-mail',
-      tel: 'Telefon',
-      adres: 'Adres',
-      pkod: 'Posta kodu',
+      name: '',
+      surname: '',
+      tc: '',
+      email: '',
+      tel: '',
+      adres: '',
+      pkod: '',
       il:'',
       ilce:'',
       citys: [
@@ -129,10 +130,20 @@ export default {
   },
    methods:{
      
-         AddTheOrder(il,ilce){
+         AddTheOrder(name,surname,tc,email,tel,adres,il,ilce,pkod,calculateToplamPrice){
+ 
     let data ={
-       il:this.il,
-       ilce:this.ilce
+      name:this.name,
+      surname:this.surname,
+      tc:this.tc,
+      email:this.tc,
+      tel:this.tel,
+      adres:this.adres,
+      il:this.il,
+      ilce:this.ilce,
+      pkod:this.pkod,
+      calculateToplamPrice:this.calculateToplamPrice,
+       
     }
      this.$store.dispatch('AddTheOrder',data)
     },

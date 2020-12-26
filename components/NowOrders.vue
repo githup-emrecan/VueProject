@@ -48,7 +48,7 @@
                               <span class="orta">Adres Bilgileri</span>
                              <div class="ınfokullanici">
                                   <ul>
-                                      <li><span>Sehir :</span> {{orde.il}}</li>
+                                      <li><span>Sehir :</span> {{orde.İl}}</li>
                                       <li><span>İlçe :</span> {{orde.ilce}}</li>
                                       <li><span>Adress :</span> {{orde.adres}}</li>
                                       <li><span>Posta kodu :</span> {{orde.pkod}}</li>
@@ -135,7 +135,7 @@ font-size: 23px;
     border-bottom: #7b232e 2px solid;
 }
 .imgaa{
-    width: 30%;
+    width: 29%;
     height: 210px;
     float: left;
 }
@@ -146,7 +146,7 @@ font-size: 23px;
 }
 .infop{
     float: left;
-    width: 65%;
+    width: 66%;
     height: 210px;
     margin-left: 2em;
 
@@ -160,7 +160,7 @@ font-size: 23px;
     padding-top: 20px;
     float: left;
     height: 150px;
-    width: 50%;
+    width: 49%;
     font-weight: 600;
 }
 .top .name span {
@@ -170,18 +170,18 @@ font-size: 23px;
     padding-top: 5px;
     float: left;
     height: 200px;
-    width: 50%;
+    width: 51%;
     font-weight: 600;
-    padding-left: 20px;
+    
 }
 .top .tot span{
     font-size: 40px;
-    margin-left: 7px;
+    margin-left: 1px;
 }
 .piece{
     color: #7b232e;
     font-size: 30px;
-    padding-left: 20px;
+    padding-left: 60px;
 }
 .totalp{
     color: #7b232e;
@@ -216,7 +216,8 @@ font-size: 23px;
     padding-bottom: 5px;
 }
 .alıcı{
-    width: 50%;
+    margin-left: 10%;
+    width: 45%;
     height: 200px;
     float: left;
     font-size: 18px;
@@ -240,7 +241,7 @@ font-size: 23px;
     border-top:#7b232e 2px solid;
 }
 .adresalıcı{
-    width: 50%;
+    width: 45%;
     height: 200px;
     float: left;
     font-size: 18px;

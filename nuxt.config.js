@@ -86,6 +86,14 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/font-awesome'
   ],
+  
+  buildModules: [
+    '@nuxtjs/router'
+  ],
+  routerModule: {
+    /* module options */
+  },
+
   /*
   ** Axios module configuration
   */

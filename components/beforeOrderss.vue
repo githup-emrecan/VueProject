@@ -64,6 +64,8 @@ computed: {
 <style scoped>
 .tbot{
     margin-bottom: 3em;
+    float: left;
+        margin-top: 10%;
 }
 h3{
     color:#7b232e;
@@ -72,6 +74,7 @@ font-size: 23px;
 }
 .ordersCard{
     margin-left: 12%;
+    margin-bottom: 2em;
 }
 .con{
     width: 80%;
