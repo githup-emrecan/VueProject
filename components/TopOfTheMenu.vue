@@ -77,7 +77,13 @@ export default {
   },
   computed: {
 			products () {
-				return this.$store.getters.productsInCart;
+			 if (this.isAuthenticated) {
+              return this.$store.getters.productsSpeacialCart;
+
+            } 
+            else {
+        return this.$store.getters.productsInCart;
+            }
             },
 
           isAuthenticated() {

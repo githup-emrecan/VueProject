@@ -67,16 +67,30 @@ export default {
     },
     computed: {
 			products () {
-				return this.$store.getters.productsInCart;
+            if (this.isAuthenticated) {
+              return this.$store.getters.productsSpeacialCart;
+
+            } 
+            else {
+        return this.$store.getters.productsInCart;
+            }
+				
             },
              
             calculateToplamPrice (){
-						let productsAdded = this.$store.getters.productsInCart,
+						let productsAdded=null,
 						pricesArray = [],
                         finalPrice = '',
                         kdvPrice = 0,
                         Toplamprice =0,
                         quantity = 1;
+
+             if (this.isAuthenticated) {
+               productsAdded = this.$store.getters.productsSpeacialCart;
+            } 
+              else{
+                  productsAdded = this.$store.getters.productsInCart;
+              }
                         
                         productsAdded.forEach(product => {
 
@@ -94,12 +108,19 @@ export default {
 
             },
             calculateKdv (){
-						 let productsAdded = this.$store.getters.productsInCart,
+						 let productsAdded=null,
 						pricesArray = [],
                         finalPrice = '',
                         kdvPrice = 0,
                         quantity = 1;
                         
+
+                         if (this.isAuthenticated) {
+               productsAdded = this.$store.getters.productsSpeacialCart;
+            } 
+              else{
+                  productsAdded = this.$store.getters.productsInCart;
+              }
                         productsAdded.forEach(product => {
 
 					if (product.piece >= 1) {
@@ -114,14 +135,22 @@ export default {
                  return finalPrice.toFixed(3);
 
             },
-            isAuthenticated() {
+             isAuthenticated() {
             return this.$store.getters.isAuthenticated;
         },
+
             calculatePrice (){
-						let productsAdded = this.$store.getters.productsInCart,
+						 let productsAdded=null,
 						pricesArray = [],
 						finalPrice = '',
                         quantity = 1;
+
+                         if (this.isAuthenticated) {
+               productsAdded = this.$store.getters.productsSpeacialCart;
+            } 
+              else{
+                  productsAdded = this.$store.getters.productsInCart;
+              }
                         
                         productsAdded.forEach(product => {
 
@@ -147,7 +176,13 @@ export default {
 
 	methods: {
 			removeFromCart (id) {
-		this.$store.dispatch('deleteCart',id)
+		  if (this.isAuthenticated) {
+            this.$store.dispatch('deletespeacialCart',id)  
+
+            } 
+            else {
+        this.$store.dispatch('deleteCart',id)
+            }
 		}
 	}   
     

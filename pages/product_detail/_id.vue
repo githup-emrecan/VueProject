@@ -65,7 +65,11 @@ export default {
       img:''
     };
   },
-
+computed: {
+        isAuthenticated() {
+            return this.$store.getters.isAuthenticated;
+        }
+    },
   mounted () {
     this.product = this.$store.getters.getProductById(this.$route.params.id);
     this.img=this.product.images;
@@ -87,7 +91,16 @@ export default {
         images:images,
         piece: selected
     }
-     this.$store.dispatch('AddToCart',data)
+
+         if (this.isAuthenticated) {
+            this.$store.dispatch('AddToSpecialCart',data)
+
+            } 
+            else {
+        this.$store.dispatch('AddToCart',data)
+            }
+
+    
     },
     onSelectQuantity (id) {
       let data = {

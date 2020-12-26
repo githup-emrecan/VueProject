@@ -15,7 +15,7 @@
       <section>
   <h3>Listelerim</h3>  
         <ul>
-            <li><a>Alışveriş Listem</a></li>
+            <li><nuxt-link :to="{ name: 'DetailCart' }">Alışveriş Listem</nuxt-link></li>
             <li><a>Fiyat Bildirim Listem</a></li>
         </ul>
       </section>

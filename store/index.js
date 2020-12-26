@@ -1,16 +1,17 @@
 import {fireData} from '~/plugins/firebase.js'
 import {fireAuth} from '~/plugins/firebase.js'
 
-
+/*import  router  from '../store/router.js'*/
 
 export const state = () => ({
   products: [],
   users: [],
   orders:[],
   cart:[],
+  speacialcart:[],
   user: null,
   isAuthenticated: false,
-  deneme:'VI9RGY15xHdCIc9FuTaQojZbvPJ3'
+  
 })
 
 export const getters = {
@@ -23,6 +24,9 @@ export const getters = {
  productsInCart: (state) => {
      return state.cart
   },
+  productsSpeacialCart: (state) => {
+    return state.speacialcart
+ },
   getusers:(state) => {
     return state.users
  },
@@ -49,6 +53,9 @@ export const mutations = {
   SetCart(state,array){
       state.cart=array
       },
+  SetSpeacialCart(state,array){
+        state.speacialcart=array
+    },
  setIsAuthenticated(state, payload) {
         state.isAuthenticated = payload;
     },
@@ -85,21 +92,42 @@ userSignOut({ commit }) {
       .then(() => {
           commit('setUser', null);
           commit('setIsAuthenticated', false);
-         /*  router.push('/'); */
+           router.push('/'); 
       }) 
       .catch(() => {
           commit('setUser', null);
           commit('setIsAuthenticated', false);
-        /*  router.push('/'); */
+         router.push('/'); 
       });
 },
   AddToCart({ commit }, array) {
     commit('AddToCart', array)
   },
+  AddToSpecialCart({ commit }, array) {
+    commit('AddToSpecialCart', array)
+  },
+
   AddTheOrder({state,dispatch},array){
-    var İlname = array.il;
-    var ilcename = array.ilce;
-    var newOrder = {İlname,ilcename}
+    
+    var name =array.name;
+    var surname =array.surname;
+    var tc =array.tc;
+    var email =array.email;
+    var tel = array.tel;
+    var adres = array.adres;
+    var pkod = array.pkod;
+    var İl = array.il;
+    var ilce = array.ilce;
+    var ProductName='El Salvador (250 GR)';
+    var Price =64.81;
+    var imga ='https://www.coffeemania.com/epanel/upl/1089/big_el_salvador_250gr.png';
+    var pid = 4;
+    var piece = 1;
+    var Total =array.calculateToplamPrice;
+    var DeliveryDate = 'henüz teslim edilmedi';
+    var OrderDate ='12.12.2020 cuma';
+    var ShipDate = 'bilinmiyor';
+    var newOrder = {name,surname,tc,email,tel,adres,pkod,İl,ilce,ProductName,Price,imga,pid,Total,DeliveryDate,OrderDate,ShipDate,}
 
     var ref = fireData.ref('orders').child(state.user.user.uid)
     ref.push(newOrder)
@@ -128,6 +156,28 @@ userSignOut({ commit }) {
     dispatch('fetchcart')
   },
 
+  AddToSpecialCart({state,dispatch},array){
+    if(state.speacialcart.filter(c => c.pid == array.pid).length>0) {
+     var ItemID = state.speacialcart.find(c=>c.pid===array.pid).id
+     dispatch('changeSpeacialPiece',{id:ItemID, piece:1})
+      return;
+    }
+    var cart = state.cart;
+    if(cart.length >0 ){
+      var id = cart[cart.length-1].id+1;
+    }
+    else id=1;
+    var pid = array.pid;
+    var ProductName = array.ProductName;
+    var Price = array.Price;
+    var images = array.images;
+    var piece = array.piece;
+    var newCart = {id,pid,ProductName,Price,images,piece}
+
+    var ref = fireData.ref('specialCart').child(state.user.user.uid)
+    ref.push(newCart)
+    dispatch('fetchSpeacialcart')
+  },
  changePiece({state,dispatch},id_count){
     var ref = fireData.ref('cart')
     var id=id_count.id
@@ -143,12 +193,34 @@ userSignOut({ commit }) {
       dispatch('fetchcart')
     }
   },
+  changeSpeacialPiece({state,dispatch},id_count){
+    var ref = fireData.ref('specialCart/'+ state.user.user.uid)
+    var id=id_count.id
+    var item=state.speacialcart.find(cart => cart.id === id)
+    var nCount = id_count.piece + item.piece
+    var key=item.key
+    if (nCount<=0) {
+    
+    } else {
+      ref.child(key).update({
+        piece:nCount
+      })
+      dispatch('fetchSpeacialcart')
+    }
+  },
 
   deleteCart({state,dispatch},id){
     var ref = fireData.ref('cart')
     var key=state.cart.find(cart => cart.id === id).key
     ref.child(key).remove()
     dispatch('fetchcart')
+  },
+
+  deletespeacialCart({state,dispatch},id){
+    var ref = fireData.ref('specialCart/'+ state.user.user.uid)
+    var key=state.speacialcart.find(cart => cart.id === id).key
+    ref.child(key).remove()
+    dispatch('fetchSpeacialcart')
   },
 
   fetchProducts ({commit}){
@@ -183,17 +255,18 @@ userSignOut({ commit }) {
       commit('SetUsers',arr)
     });
   },
- /*fetchUsers ({state,commit}){
-    var ref = fireData.ref('users')
+  fetchSpeacialcart ({state,commit}){
+    var ref = fireData.ref('specialCart/'+ state.user.user.uid)
     ref.once('value').then(function(snapshot)
     {
       let arr = Object.entries(snapshot.val()).map(e => Object.assign(e[1], { key: e[0] }))
-      commit('SetUsers',arr)
+      commit('SetSpeacialCart',arr)
     });
-  },*/
+  },
+
 
   fetchOrders ({state,commit}){
-    var ref = fireData.ref('orders')
+    var ref = fireData.ref('orders/'+ state.user.user.uid)
     ref.once('value').then(function(snapshot)
     {
       let arr = Object.entries(snapshot.val()).map(e => Object.assign(e[1], { key: e[0] }))

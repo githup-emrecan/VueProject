@@ -1,6 +1,7 @@
 /* import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../pages/index.vue';
+import store from '../store/index'
 
 Vue.use(Router);
 
@@ -14,8 +15,8 @@ const router = new Router({
             component: Home
         },
         {
-            path: '/about',
-            name: 'about',
+            path: '/account',
+            name: 'account',
             component: () => import('../pages/Account.vue'),
             meta: {
                 authRequired: true
@@ -44,4 +45,4 @@ router.beforeEach((to, from, next) => {
     }
 });
 
-export default router;*/
+export default router; */
