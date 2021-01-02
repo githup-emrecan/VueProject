@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="nowww">
+    <div class="nowww" v-show="this.noworders.length>0">
         <section>
     <h3>BEKLENEN SİPARİŞLER</h3>
                    <div class="ordersCard">
@@ -62,6 +62,7 @@
            </div>
            
         </section>
+        <section v-show="this.noworders.length===0"> sipariş yok </section>
     </div>
 </div>
    

@@ -127,7 +127,7 @@ userSignOut({ commit }) {
     var DeliveryDate = 'henüz teslim edilmedi';
     var OrderDate ='12.12.2020 cuma';
     var ShipDate = 'bilinmiyor';
-    var newOrder = {name,surname,tc,email,tel,adres,pkod,İl,ilce,ProductName,Price,imga,pid,Total,DeliveryDate,OrderDate,ShipDate,}
+    var newOrder = {name,surname,tc,email,tel,adres,pkod,İl,ilce,ProductName,Price,imga,pid,Total,DeliveryDate,OrderDate,piece,ShipDate,}
 
     var ref = fireData.ref('orders').child(state.user.user.uid)
     ref.push(newOrder)

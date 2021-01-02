@@ -36,6 +36,7 @@
            </div>
            
         </section>
+        
     </div>
 </div>
    
@@ -178,5 +179,26 @@ font-size: 23px;
     width: 100%;
     height: 30px;
     border-top: #7b232e 2px solid;
+}
+.ifzero {
+    margin-left: 15px;
+}
+.ifzero p{
+ color: #4f4f4f;
+ font-size: 15px;
+ font-weight: 500;
+}
+.ifzero  button {
+    border: none;
+    margin-top: 30px;
+    width: 230px;
+    height: 45px;
+    background: #7b232e;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 2em;
+}
+.ifzero  button:focus{
+    outline: 0;
 }
 </style>
