@@ -125,7 +125,7 @@ userSignOut({ commit }) {
     var piece = 1;
     var Total =array.calculateToplamPrice;
     var DeliveryDate = 'henüz teslim edilmedi';
-    var OrderDate ='12.12.2020 cuma';
+    var OrderDate ='04.01.2021 Pazartesi';
     var ShipDate = 'bilinmiyor';
     var newOrder = {name,surname,tc,email,tel,adres,pkod,İl,ilce,ProductName,Price,imga,pid,Total,DeliveryDate,OrderDate,piece,ShipDate,}
 
