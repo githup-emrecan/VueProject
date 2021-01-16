@@ -1,6 +1,8 @@
 
-import {shollowMount,mount} from '@vue/test-utils'
+//import {shollowMount,mount} from '@vue/test-utils'
 // import helloword from '../components/header/'
+
+import { expect } from 'chai'
 import  {getters} from '../store/index'
 describe('getters', () => {
  

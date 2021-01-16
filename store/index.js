@@ -38,11 +38,48 @@ export const getters = {
   },
   quantity: state => {
     return state.products.quantity;
-  }
+  },
+
+  filteredProducts (state, { filterCategory }) {
+    return state.products.filter(product => {
+      return product.category === filterCategory
+    })
+  },
+  filteredisSlideProducts (state, { filterisSlide }) {
+    return state.products.filter(product => {
+      return product.isSlide === filterisSlide
+    })
+  },
+filteredPriceProducts (state, { filterPrice }) {
+    return state.products.filter(product => {
+      return product.Price === filterPrice
+    })
+  },
+  
+
 }
 
 export const mutations = {
+  AAddToCart({state},array){
+    if(state.cart.filter(c => c.pid == array.pid).length>0) {
+     state.cart.find(c=>c.pid===array.pid).piece++;
+      return;
+    }
+    var cart = state.cart;
+    if(cart.length >0 ){
+      var id = cart[cart.length-1].id+1;
+    }
+    else id=1;
+    var pid = array.pid;
+    var ProductName = array.ProductName;
+    var Price = array.Price;
+    var images = array.images;
+    var piece = array.piece;
+    var newCart = {id,pid,ProductName,Price,images,piece}
 
+   state.cart.push(newCart)
+    
+  },
 
   SetProducts(state,array){
   state.products=array
