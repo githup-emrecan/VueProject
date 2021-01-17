@@ -80,6 +80,13 @@ export const mutations = {
    state.cart.push(newCart)
     
   },
+  ddeleteCart({state,dispatch},id){
+    
+    var key=state.cart.find(cart => cart.id === id).key
+    state.cart.delete(cart.id)
+  
+  },
+
 
   SetProducts(state,array){
   state.products=array
