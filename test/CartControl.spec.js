@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import  {getters} from '../store/index'
-describe('getters', () => {
+import  {mutations} from '../store/index'
+describe('mutations', () => {
  
     test('cart add test passed', () => {
 
@@ -26,7 +26,7 @@ describe('getters', () => {
         pid : 4,
         piece : 2
       }
-      const result = getters.AAddToCart(state ,{ newcart })
+      const result = mutations.AAddToCart(state ,{ newcart })
       
       expect(result).to.deep.equal(
         {
@@ -74,7 +74,7 @@ describe('getters', () => {
                pid : 2,
                piece : 1
      }
-     const result = getters.AAddToCart(state ,{ newcart })
+     const result = mutations.AAddToCart(state ,{ newcart })
      
      expect(result).to.deep.equal(
        {
@@ -116,7 +116,7 @@ describe('getters', () => {
 }
 
 const pid=4
-const result = getters.AAddToCart(state ,{ id })
+const result = mutations.ddeleteCart(state ,{ pid })
 
 expect(result).to.deep.equal(
  {

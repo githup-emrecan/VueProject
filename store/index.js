@@ -80,14 +80,38 @@ export const mutations = {
    state.cart.push(newCart)
     
   },
+  AAddToSpecialCart({state,dispatch},array){
+    if(state.speacialcart.filter(c => c.pid == array.pid).length>0) {
+     state.speacialcart.find(c=>c.pid===array.pid).piece++;
+     
+      return;
+    }
+    var cart = state.cart;
+    if(cart.length >0 ){
+      var id = cart[cart.length-1].id+1;
+    }
+    else id=1;
+    var pid = array.pid;
+    var ProductName = array.ProductName;
+    var Price = array.Price;
+    var images = array.images;
+    var piece = array.piece;
+    var newCart = {id,pid,ProductName,Price,images,piece}
+
+    state.speacialcart.push(newCart)
+
+  },
   ddeleteCart({state,dispatch},id){
     
     var key=state.cart.find(cart => cart.id === id).key
-    state.cart.delete(cart.id)
+    state.cart.delete(key.id)
   
   },
 
-
+  deletespeacialCart({state,dispatch},id){
+    var key=state.speacialcart.find(speacialcart=> speacialcart.id === id).key
+    state.speacialcart.delete(key.id)
+  },
   SetProducts(state,array){
   state.products=array
   },
