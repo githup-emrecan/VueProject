@@ -7,8 +7,8 @@ Bu Proje [Yalova Üniversitesi Bilgisayar Mühendisliği](http://bilgisayar.yalo
 
 Bu ödevde Vue.js ile proje geliştirmeyi öğreniyoruz ve [Coffemania.com](https://www.coffeemania.com/) adlı siteyi baz alıyoruz.
 
-Bu proje ödevimizin üçüncü adımıdır ,ilk adımda 10 farklı compenent yapımını öğrendik ikinci adımda
-o compenentleri NUXT yapısı ile çalışır hale getirdik ,şimdi ise Firebase entegarasyonu yapıyoruz
+Bu proje ödevimizin dördüncü ve son adımıdır ,ilk adımda 10 farklı compenent yapımını öğrendik ikinci adımda
+o compenentleri NUXT yapısı ile çalışır hale getirdik ,üçüncü adımda Firebase entegarasyonu yaptık ve şimdi ise utils jest testlerimizi yapıyoruz
 
 Projeyi çalıştırmak için ilk önce vue eklentilerini yüklüyoruz ve daha sonra terminali açıp
 
