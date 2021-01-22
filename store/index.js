@@ -60,6 +60,30 @@ filteredPriceProducts (state, { filterPrice }) {
 }
 
 export const mutations = {
+  AAddTheOrder({state,dispatch},array){
+    
+    var name =array.name;
+    var surname =array.surname;
+    var tc =array.tc;
+    var email =array.email;
+    var tel = array.tel;
+    var adres = array.adres;
+    var pkod = array.pkod;
+    var İl = array.il;
+    var ilce = array.ilce;
+    var ProductName='El Salvador (250 GR)';
+    var Price =64.81;
+    var imga ='https://www.coffeemania.com/epanel/upl/1089/big_el_salvador_250gr.png';
+    var pid = 4;
+    var piece = 1;
+    var Total =array.calculateToplamPrice;
+    var DeliveryDate = 'henüz teslim edilmedi';
+    var OrderDate ='04.01.2021 Pazartesi';
+    var ShipDate = 'bilinmiyor';
+    var newOrder = {name,surname,tc,email,tel,adres,pkod,İl,ilce,ProductName,Price,imga,pid,Total,DeliveryDate,OrderDate,piece,ShipDate,}
+
+   state.orders.push(newOrder)
+  },
   AAddToCart({state},array){
     if(state.cart.filter(c => c.pid == array.pid).length>0) {
      state.cart.find(c=>c.pid===array.pid).piece++;
